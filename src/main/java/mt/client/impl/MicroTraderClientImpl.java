@@ -1,5 +1,5 @@
 package mt.client.impl;
-//alteraçao para teste
+//alteraçao para
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
