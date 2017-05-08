@@ -218,6 +218,7 @@ public class MicroServer implements MicroTraderServer {
 		LOGGER.log(Level.INFO, "Processing new order...");
 
 		Order o = msg.getOrder();
+		//nao precisa ficheiro xml
 		
 		// save the order on map
 		saveOrder(o);
