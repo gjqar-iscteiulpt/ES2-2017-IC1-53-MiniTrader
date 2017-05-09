@@ -1,5 +1,8 @@
 package mt.server;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,6 +15,21 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 import mt.Order;
 import mt.comm.ServerComm;
@@ -27,8 +45,9 @@ import mt.filter.AnalyticsFilter;
  * @author Group 78
  *
  */
+			//Branch of USA
 public class MicroServer implements MicroTraderServer {
-	
+	private ArrayList<Order> orders = new ArrayList<>();
 	public static void main(String[] args) {
 		ServerComm serverComm = new AnalyticsFilter(new ServerCommImpl());
 		MicroTraderServer server = new MicroServer();
@@ -107,6 +126,12 @@ public class MicroServer implements MicroTraderServer {
 						processNewOrder(msg);
 					} catch (ServerException e) {
 						serverComm.sendError(msg.getSenderNickname(), e.getMessage());
+					} catch (SAXException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					break;
 				default:
@@ -213,22 +238,25 @@ public class MicroServer implements MicroTraderServer {
 	 * 
 	 * @param msg
 	 *            the message sent by the client
+	 * @throws IOException 
+	 * @throws SAXException 
 	 */
-	private void processNewOrder(ServerSideMessage msg) throws ServerException {
+	private void processNewOrder(ServerSideMessage msg) throws ServerException, SAXException, IOException {
 		LOGGER.log(Level.INFO, "Processing new order...");
 
 		Order o = msg.getOrder();
-		
 		// save the order on map
 		saveOrder(o);
 
 		// if is buy order
 		if (o.isBuyOrder()) {
+			exportToXml(o);
 			processBuy(msg.getOrder());
 		}
 		
 		// if is sell order
 		if (o.isSellOrder()) {
+			exportToXml(o);
 			processSell(msg.getOrder());
 		}
 
@@ -240,8 +268,8 @@ public class MicroServer implements MicroTraderServer {
 
 		// reset the set of changed orders
 		updatedOrders = new HashSet<>();
-
-	}
+		}
+	
 	
 	/**
 	 * Store the order on map
@@ -363,6 +391,47 @@ public class MicroServer implements MicroTraderServer {
 					it.remove();
 				}
 			}
+		}
+	}
+	private void exportToXml(Order o) throws ServerException, SAXException, IOException {
+		orders.add(o);
+		String tipo = null;
+		try {
+	        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.newDocument();
+			Element principalElement = doc.createElement("Orders");
+			doc.appendChild(principalElement);
+	        // doc.getDocumentElement().normalize();   
+			 for(int i = 0; i<orders.size();++i){	
+	         Element newElementOrder = doc.createElement("Order");
+	         newElementOrder.setAttribute("nome",""+o.getNickname() );
+	         newElementOrder.setAttribute("Id",""+o.getServerOrderID() );
+	         if(o.isBuyOrder())
+	        	 tipo = "buy";
+	         else
+	        	 tipo = "sell"; 
+		         newElementOrder.setAttribute("Type",tipo);
+		         newElementOrder.setAttribute("Stock", ""+o.getStock());
+		         newElementOrder.setAttribute("Units", ""+o.getNumberOfUnits());
+		         newElementOrder.setAttribute("Price", ""+o.getPricePerUnit());
+		         principalElement.appendChild(newElementOrder);
+	        }
+	         System.out.println("Save XML document.");
+	         Transformer transformer;
+			try {
+				transformer = TransformerFactory.newInstance().newTransformer();		
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+				StreamResult result = new StreamResult(new FileOutputStream("MicroTraderPersistence_US.xml"));
+				DOMSource source = new DOMSource(doc);
+				transformer.transform(source, result); 
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
