@@ -214,6 +214,8 @@ public class MicroServer implements MicroTraderServer {
 	 * @param msg
 	 *            the message sent by the client
 	 */
+	
+					//Branch of Asia
 	private void processNewOrder(ServerSideMessage msg) throws ServerException {
 		LOGGER.log(Level.INFO, "Processing new order...");
 
