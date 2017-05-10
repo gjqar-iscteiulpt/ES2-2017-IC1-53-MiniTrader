@@ -43,7 +43,7 @@ import mt.filter.AnalyticsFilter;
  */
 			//Branch Europa
 public class MicroServer implements MicroTraderServer {
-	
+	ArrayList<Order> orders = new ArrayList<>();
 	public static void main(String[] args) {
 		ServerComm serverComm = new AnalyticsFilter(new ServerCommImpl());
 		MicroTraderServer server = new MicroServer();
@@ -118,7 +118,7 @@ public class MicroServer implements MicroTraderServer {
 						if(msg.getOrder().getServerOrderID() == EMPTY){
 							msg.getOrder().setServerOrderID(id++);
 						}
-						notifyAllClients(msg.getOrder());
+						
 						try {
 							processNewOrder(msg);
 						} catch (SAXException | IOException e) {
@@ -238,32 +238,29 @@ public class MicroServer implements MicroTraderServer {
 		LOGGER.log(Level.INFO, "Processing new order...");
 
 		Order o = msg.getOrder();
-		
 		// save the order on map
-		saveOrder(o);
+		if(saveOrder(o)){
+			notifyAllClients(msg.getOrder());
+			// if is buy order
+			if (o.isBuyOrder()) {
+				processBuy(msg.getOrder());
+			}
+			
+			// if is sell order
+			if (o.isSellOrder()) {
+				processSell(msg.getOrder());
+			}
 	
-		// if is buy order
-		if (o.isBuyOrder()) {
-			exportToXml(o);
-			processBuy(msg.getOrder());
-		}
-		
-		// if is sell order
-		if (o.isSellOrder()) {
-			exportToXml(o);
-			processSell(msg.getOrder());
-		}
-
-		// notify clients of changed order
-		notifyClientsOfChangedOrders();
-
-		// remove all fulfilled orders
-		removeFulfilledOrders();
-
-		// reset the set of changed orders
-		updatedOrders = new HashSet<>();
-		}
+			// notify clients of changed order
+			notifyClientsOfChangedOrders();
 	
+			// remove all fulfilled orders
+			removeFulfilledOrders();
+	
+			// reset the set of changed orders
+			updatedOrders = new HashSet<>();
+			}
+	}
 	
 	/**
 	 * Store the order on map
@@ -271,12 +268,21 @@ public class MicroServer implements MicroTraderServer {
 	 * @param o
 	 * 			the order to be stored on map
 	 */
-	private void saveOrder(Order o) {
+	private boolean saveOrder(Order o) {
 		LOGGER.log(Level.INFO, "Storing the new order...");
-		
-		//save order on map
-		Set<Order> orders = orderMap.get(o.getNickname());
-		orders.add(o);		
+		if(o.getNumberOfUnits() >=10){
+			//save order on map
+			Set<Order> orders = orderMap.get(o.getNickname());
+			orders.add(o);	
+			try {
+				exportToXml(o);
+				return true;
+			} catch (Exception e) {
+			}
+		}
+		serverComm.sendError(o.getNickname(), "unidades tem que ser maior que 10");
+		return false;
+			
 	}
 
 	/**
