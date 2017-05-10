@@ -393,6 +393,7 @@ public class MicroServer implements MicroTraderServer {
 			}
 		}
 	}
+	//export to xml
 	private void exportToXml(Order o) throws ServerException, SAXException, IOException {
 		orders.add(o);
 		String tipo = null;
