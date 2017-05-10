@@ -395,9 +395,10 @@ public class MicroServer implements MicroTraderServer {
 			Document doc = dBuilder.newDocument();
 			Element principalElement = doc.createElement("Orders");
 			doc.appendChild(principalElement);
-	        // doc.getDocumentElement().normalize();   
+	        
 			 for(int i = 0; i<orders.size();++i){	
 	         Element newElementOrder = doc.createElement("Order");
+	         newElementOrder.setAttribute("nome",""+o.getNickname() );
 	         newElementOrder.setAttribute("Id",""+o.getServerOrderID() );
 	         if(o.isBuyOrder())
 	        	 tipo = "buy";
