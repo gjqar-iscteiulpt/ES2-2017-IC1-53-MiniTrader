@@ -282,6 +282,20 @@ public class MicroServer implements MicroTraderServer {
 				serverComm.sendError(o.getNickname(), "Excedeu o numero maximo de vendas pendentes");
 				return false;
 			}
+		
+		}
+		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
+			for (Order os : entry.getValue()) {
+				if (os.isBuyOrder() && os.getStock().equals(o.getStock()) && os.getPricePerUnit() >= o.getPricePerUnit() && os.getNickname().equals(o.getNickname())) {
+					serverComm.sendError(o.getNickname(), "nao e premitido vender a mesma pessoa");
+					return false;
+				}
+				if (os.isSellOrder() && o.getStock().equals(os.getStock()) && os.getPricePerUnit() <= o.getPricePerUnit() && os.getNickname().equals(o.getNickname())) {
+						serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
+						return false;
+				
+				}
+			}
 		}
 		if(o.getNumberOfUnits() >=10 ){
 			//save order on map
@@ -311,7 +325,11 @@ public class MicroServer implements MicroTraderServer {
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			for (Order o : entry.getValue()) {
 				if (o.isBuyOrder() && o.getStock().equals(sellOrder.getStock()) && o.getPricePerUnit() >= sellOrder.getPricePerUnit()) {
-					doTransaction (o, sellOrder);
+		//			if(o.getNickname().equals(sellOrder.getNickname())){
+		//				serverComm.sendError(o.getNickname(), "nao e premitido vender a mesma pessoa");			
+		//			}
+		//			else
+						doTransaction (o, sellOrder);
 				}
 			}
 		}
@@ -330,7 +348,11 @@ public class MicroServer implements MicroTraderServer {
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			for (Order o : entry.getValue()) {
 				if (o.isSellOrder() && buyOrder.getStock().equals(o.getStock()) && o.getPricePerUnit() <= buyOrder.getPricePerUnit()) {
-					doTransaction(buyOrder, o);
+			//		if(o.getNickname().equals(buyOrder.getNickname())){
+			//			serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
+			//		}
+			//		else
+						doTransaction(buyOrder, o);
 				}
 			}
 		}
