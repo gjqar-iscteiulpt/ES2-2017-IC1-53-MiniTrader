@@ -273,15 +273,20 @@ public class MicroServer implements MicroTraderServer {
 		LOGGER.log(Level.INFO, "Storing the new order...");
 		Iterator<Order> iterator = orders.iterator();
 		if(o.isSellOrder()){
+			System.out.println("entrei!!!");
 			for(countOfSells = 0; iterator.hasNext();){
+				System.out.println("caralho!!!");
 				Order order = iterator.next();
 					if(order.isSellOrder() && order.getNickname().equals(o.getNickname()) && order.getNumberOfUnits() >0)
+						System.out.println("estou aqui");
 						++countOfSells;
 			}
+			System.out.println("count -"+countOfSells);
 			if(countOfSells>=5){
 				serverComm.sendError(o.getNickname(), "Excedeu o numero maximo de vendas pendentes");
 				return false;
 			}
+
 		
 		}
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
