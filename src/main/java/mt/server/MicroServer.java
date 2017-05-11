@@ -43,8 +43,8 @@ import mt.filter.AnalyticsFilter;
  */
 			//Branch Europa
 public class MicroServer implements MicroTraderServer {
-	private int countOfSells = 0;
 	ArrayList<Order> orders = new ArrayList<>();
+	 private int countOfSells = 0;
 	public static void main(String[] args) {
 		ServerComm serverComm = new AnalyticsFilter(new ServerCommImpl());
 		MicroTraderServer server = new MicroServer();
@@ -317,7 +317,6 @@ public class MicroServer implements MicroTraderServer {
 		return false;
 			
 	}
-
 	/**
 	 * Process the sell order
 	 * 
@@ -330,11 +329,7 @@ public class MicroServer implements MicroTraderServer {
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			for (Order o : entry.getValue()) {
 				if (o.isBuyOrder() && o.getStock().equals(sellOrder.getStock()) && o.getPricePerUnit() >= sellOrder.getPricePerUnit()) {
-		//			if(o.getNickname().equals(sellOrder.getNickname())){
-		//				serverComm.sendError(o.getNickname(), "nao e premitido vender a mesma pessoa");			
-		//			}
-		//			else
-						doTransaction (o, sellOrder);
+					doTransaction (o, sellOrder);
 				}
 			}
 		}
@@ -353,11 +348,7 @@ public class MicroServer implements MicroTraderServer {
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			for (Order o : entry.getValue()) {
 				if (o.isSellOrder() && buyOrder.getStock().equals(o.getStock()) && o.getPricePerUnit() <= buyOrder.getPricePerUnit()) {
-			//		if(o.getNickname().equals(buyOrder.getNickname())){
-			//			serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
-			//		}
-			//		else
-						doTransaction(buyOrder, o);
+					doTransaction(buyOrder, o);
 				}
 			}
 		}
