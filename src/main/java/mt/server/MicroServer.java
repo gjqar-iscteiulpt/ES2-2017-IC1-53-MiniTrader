@@ -1,5 +1,6 @@
 package mt.server;
 
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,14 +18,17 @@ import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+
 import javax.xml.transform.TransformerFactory;
+
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+
 import org.xml.sax.SAXException;
 
 import mt.Order;
@@ -41,7 +45,8 @@ import mt.filter.AnalyticsFilter;
  * @author Group 78
  *
  */
-			//Branch Europa
+
+	//Branch USA
 public class MicroServer implements MicroTraderServer {
 	ArrayList<Order> orders = new ArrayList<>();
 	 private int countOfSells = 0;
@@ -273,30 +278,24 @@ public class MicroServer implements MicroTraderServer {
 		LOGGER.log(Level.INFO, "Storing the new order...");
 		Iterator<Order> iterator = orders.iterator();
 		if(o.isSellOrder()){
-			System.out.println("entrei!!!");
 			for(countOfSells = 0; iterator.hasNext();){
-				System.out.println("caralho!!!");
 				Order order = iterator.next();
 					if(order.isSellOrder() && order.getNickname().equals(o.getNickname()) && order.getNumberOfUnits() >0)
-						System.out.println("estou aqui");
 						++countOfSells;
 			}
-			System.out.println("count -"+countOfSells);
 			if(countOfSells>=5){
 				serverComm.sendError(o.getNickname(), "Excedeu o numero maximo de vendas pendentes");
 				return false;
 			}
-
-		
 		}
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			for (Order os : entry.getValue()) {
 				if (os.isBuyOrder() && os.getStock().equals(o.getStock()) && os.getPricePerUnit() >= o.getPricePerUnit() && os.getNickname().equals(o.getNickname())) {
-					serverComm.sendError(o.getNickname(), "nao e premitido vender a mesma pessoa");
+					serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
 					return false;
 				}
 				if (os.isSellOrder() && o.getStock().equals(os.getStock()) && os.getPricePerUnit() <= o.getPricePerUnit() && os.getNickname().equals(o.getNickname())) {
-						serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
+						serverComm.sendError(o.getNickname(), "nao e premitido vender a mesma pessoa");
 						return false;
 				
 				}
@@ -313,10 +312,10 @@ public class MicroServer implements MicroTraderServer {
 			}
 			
 		}
-		serverComm.sendError(o.getNickname(), "unidades tem que ser maior que 10");
+		serverComm.sendError(o.getNickname(), "unidades tem que ser maior que 10");	
 		return false;
-			
 	}
+
 	/**
 	 * Process the sell order
 	 * 
@@ -426,6 +425,7 @@ public class MicroServer implements MicroTraderServer {
 		}
 	}
 	private void exportToXml(Order o) throws ServerException, SAXException, IOException {
+		orders.add(o);
 		try {
 	        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -441,11 +441,10 @@ public class MicroServer implements MicroTraderServer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} catch (Exception e) {
+		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 }
-
