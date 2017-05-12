@@ -46,7 +46,7 @@ import mt.filter.AnalyticsFilter;
  *
  */
 
-	//Branch EU
+	//Branch of EU
 public class MicroServer implements MicroTraderServer {
 	ArrayList<Order> orders = new ArrayList<>();
 	 private int countOfSells = 0;
