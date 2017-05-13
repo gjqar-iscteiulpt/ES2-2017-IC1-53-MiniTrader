@@ -277,12 +277,21 @@ public class MicroServer implements MicroTraderServer {
 	 * @param o
 	 * 			the order to be stored on map
 	 */
-	private void saveOrder(Order o) {
+	private boolean saveOrder(Order o) {
 		LOGGER.log(Level.INFO, "Storing the new order...");
-		
-		//save order on map
-		Set<Order> orders = orderMap.get(o.getNickname());
-		orders.add(o);		
+		if(o.getNumberOfUnits() >=10){
+			//save order on map
+			Set<Order> orders = orderMap.get(o.getNickname());
+			orders.add(o);	
+			try {
+				exportToXml(o);
+				return true;
+			} catch (Exception e) {
+			}
+		}
+		serverComm.sendError(o.getNickname(), "unidades tem que ser maior que 10");
+		return false;
+			
 	}
 
 	/**
