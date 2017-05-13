@@ -41,7 +41,7 @@ import mt.filter.AnalyticsFilter;
  * @author Group 78
  *
  */
-		//Branch Asia
+		//Branch USA
 public class MicroServer implements MicroTraderServer {
 	ArrayList<Order> orders = new ArrayList<>();
 	public static void main(String[] args) {
@@ -408,7 +408,7 @@ public class MicroServer implements MicroTraderServer {
 		         Element newElementOrder = doc.createElement("Order");
 		         
 		         newElementOrder.setAttribute("Id",""+order.getServerOrderID() );
-	  		    newElementOrder.setAttribute("nome",""+o.getNickname() );
+	  		     //newElementOrder.setAttribute("nome",""+o.getNickname() );
 		         if(order.isBuyOrder())
 		        	 tipo = "buy";
 		         else
