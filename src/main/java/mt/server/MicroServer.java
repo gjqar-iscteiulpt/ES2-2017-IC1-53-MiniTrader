@@ -250,13 +250,11 @@ public class MicroServer implements MicroTraderServer {
 
 		// if is buy order
 		if (o.isBuyOrder()) {
-			exportToXml(o);
 			processBuy(msg.getOrder());
 		}
 		
 		// if is sell order
 		if (o.isSellOrder()) {
-			exportToXml(o);
 			processSell(msg.getOrder());
 		}
 
@@ -431,7 +429,7 @@ public class MicroServer implements MicroTraderServer {
 			try {
 				transformer = TransformerFactory.newInstance().newTransformer();		
 				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-				StreamResult result = new StreamResult(new FileOutputStream("MicroTraderPersistence_US.xml"));
+				StreamResult result = new StreamResult(new FileOutputStream("MicroTraderPersistence_AS.xml"));
 				DOMSource source = new DOMSource(doc);
 				transformer.transform(source, result); 
 			} catch (Exception e) {

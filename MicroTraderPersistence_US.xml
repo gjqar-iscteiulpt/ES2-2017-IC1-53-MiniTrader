@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Orders>
-<Order Id="2" Price="10.0" Stock="q" Type="buy" Units="10" nome="a"/>
-<Order Id="2" Price="10.0" Stock="q" Type="buy" Units="10" nome="a"/>
-<Order Id="2" Price="10.0" Stock="q" Type="buy" Units="10" nome="a"/>
-<Order Id="2" Price="10.0" Stock="q" Type="buy" Units="10" nome="a"/>
+<Order Id="2" Price="10.0" Stock="aq" Type="buy" Units="10" nome="q"/>
+<Order Id="2" Price="10.0" Stock="aq" Type="buy" Units="10" nome="q"/>
 </Orders>
