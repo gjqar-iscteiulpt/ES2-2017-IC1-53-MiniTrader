@@ -45,7 +45,7 @@ import mt.filter.AnalyticsFilter;
  * @author Group 78
  *
  */
-	//master
+	//master 
 	public class MicroServer implements MicroTraderServer {
 	private ArrayList<Order> orders = new ArrayList<>();
 	public static void main(String[] args) {
