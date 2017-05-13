@@ -277,6 +277,19 @@ import mt.filter.AnalyticsFilter;
 	 */
 	private boolean saveOrder(Order o) {
 		LOGGER.log(Level.INFO, "Storing the new order...");
+		Iterator<Order> iterator = orders.iterator();
+		int countOfSells = 0;
+		if(o.isSellOrder()){
+			for(countOfSells = 0; iterator.hasNext();){
+				Order order = iterator.next();
+					if(order.isSellOrder() && order.getNickname().equals(o.getNickname()) && order.getNumberOfUnits() >0)
+						++countOfSells;
+			}
+			if(countOfSells>=5){
+				serverComm.sendError(o.getNickname(), "Excedeu o numero maximo de vendas pendentes");
+				return false;
+			}
+		}	
 		if(o.getNumberOfUnits() >=10){
 			//save order on map
 			Set<Order> orders = orderMap.get(o.getNickname());
@@ -409,21 +422,21 @@ import mt.filter.AnalyticsFilter;
 			Document doc = dBuilder.newDocument();
 			Element principalElement = doc.createElement("Orders");
 			doc.appendChild(principalElement);
-	        // doc.getDocumentElement().normalize();   
-			 for(int i = 0; i<orders.size();++i){	
-	         Element newElementOrder = doc.createElement("Order");
-	         newElementOrder.setAttribute("nome",""+o.getNickname() );
-	         newElementOrder.setAttribute("Id",""+o.getServerOrderID() );
-	         if(o.isBuyOrder())
-	        	 tipo = "buy";
-	         else
-	        	 tipo = "sell"; 
-		         newElementOrder.setAttribute("Type",tipo);
-		         newElementOrder.setAttribute("Stock", ""+o.getStock());
-		         newElementOrder.setAttribute("Units", ""+o.getNumberOfUnits());
-		         newElementOrder.setAttribute("Price", ""+o.getPricePerUnit());
-		         principalElement.appendChild(newElementOrder);
-	        }
+			 for(Order order : orders){	
+		         Element newElementOrder = doc.createElement("Order");
+		         
+		         newElementOrder.setAttribute("Id",""+order.getServerOrderID() );
+	  		    newElementOrder.setAttribute("nome",""+order.getNickname() );
+		         if(order.isBuyOrder())
+		        	 tipo = "buy";
+		         else
+		        	 tipo = "sell"; 
+			         newElementOrder.setAttribute("Type",tipo);
+			         newElementOrder.setAttribute("Stock", ""+order.getStock());
+			         newElementOrder.setAttribute("Units", ""+order.getNumberOfUnits());
+			         newElementOrder.setAttribute("Price", ""+order.getPricePerUnit());
+			         principalElement.appendChild(newElementOrder);
+		        }
 	         System.out.println("Save XML document.");
 	         Transformer transformer;
 			try {
