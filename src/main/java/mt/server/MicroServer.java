@@ -404,20 +404,21 @@ public class MicroServer implements MicroTraderServer {
 			Element principalElement = doc.createElement("Orders");
 			doc.appendChild(principalElement);
 	        
-			 for(int i = 0; i<orders.size();++i){	
-	         Element newElementOrder = doc.createElement("Order");
-	         newElementOrder.setAttribute("nome",""+o.getNickname() );
-	         newElementOrder.setAttribute("Id",""+o.getServerOrderID() );
-	         if(o.isBuyOrder())
-	        	 tipo = "buy";
-	         else
-	        	 tipo = "sell"; 
-		         newElementOrder.setAttribute("Type",tipo);
-		         newElementOrder.setAttribute("Stock", ""+o.getStock());
-		         newElementOrder.setAttribute("Units", ""+o.getNumberOfUnits());
-		         newElementOrder.setAttribute("Price", ""+o.getPricePerUnit());
-		         principalElement.appendChild(newElementOrder);
-	        }
+			 for(Order order : orders){	
+		         Element newElementOrder = doc.createElement("Order");
+		         
+		         newElementOrder.setAttribute("Id",""+order.getServerOrderID() );
+	  		    newElementOrder.setAttribute("nome",""+o.getNickname() );
+		         if(order.isBuyOrder())
+		        	 tipo = "buy";
+		         else
+		        	 tipo = "sell"; 
+			         newElementOrder.setAttribute("Type",tipo);
+			         newElementOrder.setAttribute("Stock", ""+order.getStock());
+			         newElementOrder.setAttribute("Units", ""+order.getNumberOfUnits());
+			         newElementOrder.setAttribute("Price", ""+order.getPricePerUnit());
+			         principalElement.appendChild(newElementOrder);
+		      }
 	         System.out.println("Save XML document.");
 	         Transformer transformer;
 			try {
