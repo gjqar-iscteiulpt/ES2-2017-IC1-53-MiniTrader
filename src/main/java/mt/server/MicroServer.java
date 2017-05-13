@@ -283,7 +283,7 @@ public class MicroServer implements MicroTraderServer {
 				return false;
 			}
 		}
-
+		//teste
 		if(o.getNumberOfUnits() >=10){
 			//save order on map
 			Set<Order> orders = orderMap.get(o.getNickname());
