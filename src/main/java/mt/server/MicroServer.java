@@ -41,9 +41,9 @@ import mt.filter.AnalyticsFilter;
  * @author Group 78
  *
  */
-		//Branch Asi
+		//Branch Asia
 public class MicroServer implements MicroTraderServer {
-	ArrayList<Order> orders = new ArrayList<>();
+	ArrayList<Order> ordersXML = new ArrayList<>();
 	public static void main(String[] args) {
 		ServerComm serverComm = new AnalyticsFilter(new ServerCommImpl());
 		MicroTraderServer server = new MicroServer();
@@ -395,7 +395,7 @@ public class MicroServer implements MicroTraderServer {
 	}
 	//export to xml
 	private void exportToXml(Order o) throws ServerException, SAXException, IOException {
-		orders.add(o);
+		ordersXML.add(o);
 		String tipo = null;
 		try {
 	        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -404,11 +404,11 @@ public class MicroServer implements MicroTraderServer {
 			Element principalElement = doc.createElement("Orders");
 			doc.appendChild(principalElement);
 	        
-			 for(Order order : orders){	
+			 for(Order order : ordersXML){	
 		         Element newElementOrder = doc.createElement("Order");
 		         
-		         newElementOrder.setAttribute("Id",""+order.getServerOrderID() );
-	  		    newElementOrder.setAttribute("nome",""+o.getNickname() );
+		        newElementOrder.setAttribute("Id",""+order.getServerOrderID() );
+	  		    newElementOrder.setAttribute("nome",""+order.getNickname() );
 		         if(order.isBuyOrder())
 		        	 tipo = "buy";
 		         else
