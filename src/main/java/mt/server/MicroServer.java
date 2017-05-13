@@ -44,6 +44,7 @@ import mt.filter.AnalyticsFilter;
 		//Branch USA
 public class MicroServer implements MicroTraderServer {
 	ArrayList<Order> orders = new ArrayList<>();
+	private int countOfSells = 0;
 	public static void main(String[] args) {
 		ServerComm serverComm = new AnalyticsFilter(new ServerCommImpl());
 		MicroTraderServer server = new MicroServer();
@@ -270,6 +271,19 @@ public class MicroServer implements MicroTraderServer {
 	 */
 	private boolean saveOrder(Order o) {
 		LOGGER.log(Level.INFO, "Storing the new order...");
+		Iterator<Order> iterator = orders.iterator();
+		if(o.isSellOrder()){
+			for(countOfSells = 0; iterator.hasNext();){
+				Order order = iterator.next();
+					if(order.isSellOrder() && order.getNickname().equals(o.getNickname()) && order.getNumberOfUnits() >0)
+						++countOfSells;
+			}
+			if(countOfSells>=5){
+				serverComm.sendError(o.getNickname(), "Excedeu o numero maximo de vendas pendentes");
+				return false;
+			}
+		}
+
 		if(o.getNumberOfUnits() >=10){
 			//save order on map
 			Set<Order> orders = orderMap.get(o.getNickname());
