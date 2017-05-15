@@ -42,7 +42,7 @@ import mt.filter.AnalyticsFilter;
  * MicroTraderServer implementation. This class should be responsible
  * to do the business logic of stock transactions between buyers and sellers.
  * 
- * @author Group 78
+ * @author Group 53
  *
  */
 
@@ -290,15 +290,17 @@ public class MicroServer implements MicroTraderServer {
 		}
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			for (Order os : entry.getValue()) {
-				if (os.isBuyOrder() && os.getStock().equals(o.getStock()) && os.getPricePerUnit() >= o.getPricePerUnit() && os.getNickname().equals(o.getNickname())) {
-					serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
-					return false;
-				}
-				if (os.isSellOrder() && o.getStock().equals(os.getStock()) && os.getPricePerUnit() <= o.getPricePerUnit() && os.getNickname().equals(o.getNickname())) {
+				if (os.getNickname().equals(o.getNickname()) && os.getStock().equals(o.getStock())) {
+					if(o.isBuyOrder() ){
+						serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
+						return false;
+					}
+					else{
 						serverComm.sendError(o.getNickname(), "nao e premitido vender a mesma pessoa");
 						return false;
-				
+					}
 				}
+			
 			}
 		}
 		if(o.getNumberOfUnits() >=10 ){
