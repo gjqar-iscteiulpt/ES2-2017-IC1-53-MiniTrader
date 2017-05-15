@@ -272,8 +272,24 @@ public class MicroServer implements MicroTraderServer {
 		LOGGER.log(Level.INFO, "Storing the new order...");
 		if(o.getNumberOfUnits() >=10){
 			//save order on map
-			Set<Order> orders = orderMap.get(o.getNickname());
-			orders.add(o);	
+			for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
+				for (Order os : entry.getValue()) {
+					if (os.getNickname().equals(o.getNickname()) && os.getStock().equals(o.getStock())) {
+						if(o.isBuyOrder() && os.isSellOrder()){
+							System.out.println("tudo certo!");
+							
+						}
+						else if(os.isBuyOrder() && o.isSellOrder()){
+							System.out.println("tudo certo!");
+						}
+					}
+					else{
+						Set<Order> orders = orderMap.get(o.getNickname());
+						orders.add(o);	
+					}
+				
+				}
+			}
 			try {
 				exportToXml(o);
 				return true;
