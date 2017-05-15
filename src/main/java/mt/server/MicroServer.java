@@ -254,7 +254,7 @@ public class MicroServer implements MicroTraderServer {
 	
 			// notify clients of changed order
 			notifyClientsOfChangedOrders();
-	
+			
 			// remove all fulfilled orders
 			removeFulfilledOrders();
 	
@@ -283,7 +283,6 @@ public class MicroServer implements MicroTraderServer {
 				return false;
 			}
 		}
-		//teste
 		if(o.getNumberOfUnits() >=10){
 			//save order on map
 			Set<Order> orders = orderMap.get(o.getNickname());

@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Orders>
-<Order Id="1" Price="10.0" Stock="as" Type="sell" Units="10"/>
-<Order Id="2" Price="10.0" Stock="qwer" Type="sell" Units="0"/>
-<Order Id="3" Price="10.0" Stock="a" Type="sell" Units="0"/>
-<Order Id="4" Price="10.0" Stock="v" Type="sell" Units="10"/>
-<Order Id="5" Price="10.0" Stock="a" Type="buy" Units="0"/>
-<Order Id="6" Price="10.0" Stock="qwer" Type="buy" Units="0"/>
-<Order Id="7" Price="10.0" Stock="df" Type="sell" Units="10"/>
-<Order Id="8" Price="10.0" Stock="v" Type="buy" Units="10"/>
+<Order Id="1" Price="10.0" Stock="q" Type="sell" Units="10"/>
+<Order Id="2" Price="10.0" Stock="q" Type="buy" Units="10"/>
 </Orders>
