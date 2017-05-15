@@ -240,6 +240,7 @@ public class MicroServer implements MicroTraderServer {
 		Order o = msg.getOrder();
 		// save the order on map
 		if(saveOrder(o)){
+			
 			notifyAllClients(msg.getOrder());
 			// if is buy order
 			if (o.isBuyOrder()) {
