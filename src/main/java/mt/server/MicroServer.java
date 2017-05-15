@@ -290,7 +290,7 @@ public class MicroServer implements MicroTraderServer {
 		}
 		for (Entry<String, Set<Order>> entry : orderMap.entrySet()) {
 			for (Order os : entry.getValue()) {
-				if (os.getNickname().equals(o.getNickname()) && os.getStock().equals(o.getStock())) {
+				if (os.getNickname().equals(o.getNickname()) && os.getStock().equals(o.getStock()) && os.getNumberOfUnits() == o.getNumberOfUnits()) {
 					if(o.isBuyOrder() ){
 						serverComm.sendError(o.getNickname(), "nao e premitido comprar a mesma pessoa");
 						return false;
