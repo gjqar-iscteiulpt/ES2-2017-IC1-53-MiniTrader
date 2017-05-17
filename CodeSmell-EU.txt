@@ -1,0 +1,157 @@
+src/main/java/mt/server/MicroServer.java:1:	A high number of imports can indicate a high degree of coupling within an object.
+src/main/java/mt/server/MicroServer.java:1:	Possible God class (WMC=68, ATFD=79, TCC=0.05)
+src/main/java/mt/server/MicroServer.java:50:	The class 'MicroServer' has a Cyclomatic Complexity of 5 (Highest = 15).
+src/main/java/mt/server/MicroServer.java:50:	The class 'MicroServer' has a Modified Cyclomatic Complexity of 4 (Highest = 11).
+src/main/java/mt/server/MicroServer.java:50:	The class 'MicroServer' has a Standard Cyclomatic Complexity of 4 (Highest = 11).
+src/main/java/mt/server/MicroServer.java:50:	This class has too many methods, consider refactoring it.
+src/main/java/mt/server/MicroServer.java:51:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/main/java/mt/server/MicroServer.java:51:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/mt/server/MicroServer.java:51:	To avoid mistakes add a comment at the beginning of the orders field if you want a default access modifier
+src/main/java/mt/server/MicroServer.java:51:	Use explicit scoping instead of the default package private level
+src/main/java/mt/server/MicroServer.java:51:	fieldCommentRequirement Required
+src/main/java/mt/server/MicroServer.java:52:	Avoid using redundant field initializer for 'countOfSells'
+src/main/java/mt/server/MicroServer.java:52:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/mt/server/MicroServer.java:52:	fieldCommentRequirement Required
+src/main/java/mt/server/MicroServer.java:53:	Parameter 'args' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:53:	publicMethodCommentRequirement Required
+src/main/java/mt/server/MicroServer.java:54:	Local variable 'serverComm' could be declared final
+src/main/java/mt/server/MicroServer.java:55:	Local variable 'server' could be declared final
+src/main/java/mt/server/MicroServer.java:59:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/main/java/mt/server/MicroServer.java:59:	fieldCommentRequirement Required
+src/main/java/mt/server/MicroServer.java:64:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/main/java/mt/server/MicroServer.java:64:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/mt/server/MicroServer.java:69:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/main/java/mt/server/MicroServer.java:69:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/mt/server/MicroServer.java:69:	Private field 'orderMap' could be made final; it is only initialized in the declaration or constructor.
+src/main/java/mt/server/MicroServer.java:74:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/main/java/mt/server/MicroServer.java:74:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/main/java/mt/server/MicroServer.java:79:	Avoid variables with short names like id
+src/main/java/mt/server/MicroServer.java:79:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/main/java/mt/server/MicroServer.java:82:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/main/java/mt/server/MicroServer.java:94:	Parameter 'serverComm' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:94:	The method 'start' has a Cyclomatic Complexity of 10.
+src/main/java/mt/server/MicroServer.java:94:	The method 'start' has a Standard Cyclomatic Complexity of 10.
+src/main/java/mt/server/MicroServer.java:94:	publicMethodCommentRequirement Required
+src/main/java/mt/server/MicroServer.java:101:	Found 'DD'-anomaly for variable 'msg' (lines '101'-'102').
+src/main/java/mt/server/MicroServer.java:102:	Avoid assignments in operands
+src/main/java/mt/server/MicroServer.java:102:	Found 'DU'-anomaly for variable 'msg' (lines '102'-'143').
+src/main/java/mt/server/MicroServer.java:103:	Local variable 'type' could be declared final
+src/main/java/mt/server/MicroServer.java:103:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:115:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:124:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:124:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:125:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:125:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:132:	Avoid printStackTrace(); use a logger call instead.
+src/main/java/mt/server/MicroServer.java:135:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:154:	Found 'UR'-anomaly for variable 'entry' (lines '154'-'156').
+src/main/java/mt/server/MicroServer.java:154:	Parameter 'msg' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:155:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:156:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:164:	Comment is too large: Too many lines
+src/main/java/mt/server/MicroServer.java:173:	Found 'UR'-anomaly for variable 'entry' (lines '173'-'178').
+src/main/java/mt/server/MicroServer.java:173:	Parameter 'msg' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:174:	There is log block not surrounded by if
+src/main/java/mt/server/MicroServer.java:177:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:178:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:193:	Found 'UR'-anomaly for variable 'entry' (lines '193'-'197').
+src/main/java/mt/server/MicroServer.java:193:	Found 'UR'-anomaly for variable 'entry' (lines '193'-'197').
+src/main/java/mt/server/MicroServer.java:193:	Found 'UR'-anomaly for variable 'order' (lines '193'-'199').
+src/main/java/mt/server/MicroServer.java:193:	Found 'UR'-anomaly for variable 'order' (lines '193'-'199').
+src/main/java/mt/server/MicroServer.java:193:	Parameter 'msg' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:194:	Local variable 'ordersToSend' could be declared final
+src/main/java/mt/server/MicroServer.java:196:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:197:	Local variable 'orders' could be declared final
+src/main/java/mt/server/MicroServer.java:198:	Local variable 'order' could be declared final
+src/main/java/mt/server/MicroServer.java:206:	Avoid variables with short names like o1
+src/main/java/mt/server/MicroServer.java:206:	Avoid variables with short names like o2
+src/main/java/mt/server/MicroServer.java:206:	Parameter 'o1' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:206:	Parameter 'o2' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:206:	publicMethodCommentRequirement Required
+src/main/java/mt/server/MicroServer.java:211:	Local variable 'order' could be declared final
+src/main/java/mt/server/MicroServer.java:222:	Found 'UR'-anomaly for variable 'entry' (lines '222'-'230').
+src/main/java/mt/server/MicroServer.java:222:	Found 'UR'-anomaly for variable 'order' (lines '222'-'232').
+src/main/java/mt/server/MicroServer.java:222:	Parameter 'msg' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:223:	There is log block not surrounded by if
+src/main/java/mt/server/MicroServer.java:229:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:230:	Local variable 'orders' could be declared final
+src/main/java/mt/server/MicroServer.java:231:	Local variable 'order' could be declared final
+src/main/java/mt/server/MicroServer.java:243:	Parameter 'msg' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:246:	Avoid variables with short names like o
+src/main/java/mt/server/MicroServer.java:246:	Local variable 'o' could be declared final
+src/main/java/mt/server/MicroServer.java:251:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:256:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:277:	Avoid variables with short names like o
+src/main/java/mt/server/MicroServer.java:277:	Found 'UR'-anomaly for variable 'entry' (lines '277'-'292').
+src/main/java/mt/server/MicroServer.java:277:	Found 'UR'-anomaly for variable 'os' (lines '277'-'293').
+src/main/java/mt/server/MicroServer.java:277:	Parameter 'o' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:277:	The method 'saveOrder' has a Cyclomatic Complexity of 15.
+src/main/java/mt/server/MicroServer.java:277:	The method 'saveOrder' has a Modified Cyclomatic Complexity of 11.
+src/main/java/mt/server/MicroServer.java:277:	The method 'saveOrder' has a Standard Cyclomatic Complexity of 11.
+src/main/java/mt/server/MicroServer.java:277:	The method saveOrder() has an NPath complexity of 231
+src/main/java/mt/server/MicroServer.java:279:	Found 'DU'-anomaly for variable 'iterator' (lines '279'-'319').
+src/main/java/mt/server/MicroServer.java:279:	Local variable 'iterator' could be declared final
+src/main/java/mt/server/MicroServer.java:282:	Local variable 'order' could be declared final
+src/main/java/mt/server/MicroServer.java:283:	Avoid using if statements without curly braces
+src/main/java/mt/server/MicroServer.java:283:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:283:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:283:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:283:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:286:	Avoid using Literals in Conditional Statements
+src/main/java/mt/server/MicroServer.java:288:	A method should have only one exit point, and that should be the last statement in the method
+src/main/java/mt/server/MicroServer.java:291:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:292:	Local variable 'os' could be declared final
+src/main/java/mt/server/MicroServer.java:293:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:293:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:296:	A method should have only one exit point, and that should be the last statement in the method
+src/main/java/mt/server/MicroServer.java:300:	A method should have only one exit point, and that should be the last statement in the method
+src/main/java/mt/server/MicroServer.java:306:	Avoid using Literals in Conditional Statements
+src/main/java/mt/server/MicroServer.java:308:	Local variable 'orders' could be declared final
+src/main/java/mt/server/MicroServer.java:309:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:312:	A method should have only one exit point, and that should be the last statement in the method
+src/main/java/mt/server/MicroServer.java:313:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/mt/server/MicroServer.java:313:	Avoid empty catch blocks
+src/main/java/mt/server/MicroServer.java:325:	Comment is too large: Line too long
+src/main/java/mt/server/MicroServer.java:327:	Found 'UR'-anomaly for variable 'entry' (lines '327'-'331').
+src/main/java/mt/server/MicroServer.java:327:	Found 'UR'-anomaly for variable 'o' (lines '327'-'332').
+src/main/java/mt/server/MicroServer.java:327:	Parameter 'sellOrder' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:330:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:331:	Local variable 'o' could be declared final
+src/main/java/mt/server/MicroServer.java:332:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:344:	Comment is too large: Line too long
+src/main/java/mt/server/MicroServer.java:346:	Found 'UR'-anomaly for variable 'entry' (lines '346'-'350').
+src/main/java/mt/server/MicroServer.java:346:	Found 'UR'-anomaly for variable 'o' (lines '346'-'351').
+src/main/java/mt/server/MicroServer.java:346:	Parameter 'buyOrder' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:349:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:350:	Local variable 'o' could be declared final
+src/main/java/mt/server/MicroServer.java:351:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:362:	Comment is too large: Line too long
+src/main/java/mt/server/MicroServer.java:363:	Comment is too large: Line too long
+src/main/java/mt/server/MicroServer.java:365:	Parameter 'buyOrder' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:365:	Parameter 'sellerOrder' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:388:	Found 'UR'-anomaly for variable 'order' (lines '388'-'391').
+src/main/java/mt/server/MicroServer.java:390:	Local variable 'order' could be declared final
+src/main/java/mt/server/MicroServer.java:402:	Found 'UR'-anomaly for variable 'entry' (lines '402'-'408').
+src/main/java/mt/server/MicroServer.java:402:	Parameter 'order' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:407:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:415:	Found 'UR'-anomaly for variable 'entry' (lines '415'-'420').
+src/main/java/mt/server/MicroServer.java:419:	Local variable 'entry' could be declared final
+src/main/java/mt/server/MicroServer.java:420:	Avoid variables with short names like it
+src/main/java/mt/server/MicroServer.java:420:	Local variable 'it' could be declared final
+src/main/java/mt/server/MicroServer.java:420:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:422:	Avoid variables with short names like o
+src/main/java/mt/server/MicroServer.java:422:	Local variable 'o' could be declared final
+src/main/java/mt/server/MicroServer.java:423:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:429:	Avoid variables with short names like o
+src/main/java/mt/server/MicroServer.java:429:	Parameter 'o' is not assigned and could be declared final
+src/main/java/mt/server/MicroServer.java:432:	Local variable 'dbFactory' could be declared final
+src/main/java/mt/server/MicroServer.java:433:	Local variable 'dBuilder' could be declared final
+src/main/java/mt/server/MicroServer.java:434:	Local variable 'doc' could be declared final
+src/main/java/mt/server/MicroServer.java:437:	Potential violation of Law of Demeter (method chain calls)
+src/main/java/mt/server/MicroServer.java:438:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:439:	Local variable 'result' could be declared final
+src/main/java/mt/server/MicroServer.java:440:	Local variable 'source' could be declared final
+src/main/java/mt/server/MicroServer.java:441:	Potential violation of Law of Demeter (object not created locally)
+src/main/java/mt/server/MicroServer.java:442:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/main/java/mt/server/MicroServer.java:444:	Avoid printStackTrace(); use a logger call instead.
+src/main/java/mt/server/MicroServer.java:448:	Avoid printStackTrace(); use a logger call instead.
